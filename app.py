@@ -37,7 +37,7 @@ for url in files:
     urlretrieve(url, file_path)
 
 #loader = PyPDFDirectoryLoader("./data/")
-loader = DirectoryLoader("./data/", glob="*.py")
+loader = DirectoryLoader("./data/", recursive=True, glob="*.py")
 
 documents = loader.load()
 # - in our testing Character split works better with this PDF data set
