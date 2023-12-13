@@ -5,6 +5,7 @@ package-lock.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__
+**/__pycache__
 *.py[cod]
 *$py.class
 
@@ -16,7 +17,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-utils
 
 # CDK Context & Staging files
 .cdk.staging/
