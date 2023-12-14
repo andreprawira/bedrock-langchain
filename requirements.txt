@@ -7,3 +7,4 @@ unstructured
 boto3
 pypdf
 faiss-cpu
+streamlit

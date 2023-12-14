@@ -14,7 +14,7 @@ from langchain.vectorstores import FAISS
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
-
+import streamlit as st
 
 # module_path = ".."
 # sys.path.append(os.path.abspath(module_path))
@@ -110,8 +110,9 @@ qa = RetrievalQA.from_chain_type(
 #query = "how do i modify bedrock-workshop.py so i can load all files inside subfolders when using DirectoryLoader class? Or do i need to use different class? show me the code snippet"
 #query = "explain to me what does frontend_stack.py code do?"
 #query = "does frontend_stack.py use origin access identity or origin access control? and tell me which variable that uses it?"
-#query = "how many s3 buckets in total we create in frontend_stack.py?"
+query = "how many s3 buckets in total we create in frontend_stack.py?"
 #query = "whos john cena?"
 
 result = qa({"query": query})
 print_ww(result['result'])
+st.write("whats good")

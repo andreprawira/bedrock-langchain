@@ -28,5 +28,5 @@ aws configure
 Once dependencies are installed and venv is activated then execute the file
 
 ```
-python .\bedrock-workshop.py
+python .\app.py
 ```
