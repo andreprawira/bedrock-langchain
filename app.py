@@ -16,8 +16,8 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 import streamlit as st
 
-# module_path = ".."
-# sys.path.append(os.path.abspath(module_path))
+
+
 boto3_bedrock = boto3.client("bedrock-runtime")
 
 # - create the Anthropic Model
@@ -36,42 +36,16 @@ for url in files:
     file_path = os.path.join("data", url.rpartition("/")[2])
     urlretrieve(url, file_path)
 
-#loader = PyPDFDirectoryLoader("./data/")
+# loader = PyPDFDirectoryLoader("./data/")
 loader = DirectoryLoader("./data/", recursive=True, glob="*.py")
 
 documents = loader.load()
 # - in our testing Character split works better with this PDF data set
 text_splitter = RecursiveCharacterTextSplitter(
-    # Set a really small chunk size, just to show.
     chunk_size = 1000,
-    chunk_overlap  = 100,
+    chunk_overlap = 100,
 )
 docs = text_splitter.split_documents(documents)
-
-avg_doc_length = lambda documents: sum([len(doc.page_content) for doc in documents])//len(documents)
-avg_char_count_pre = avg_doc_length(documents)
-avg_char_count_post = avg_doc_length(docs)
-# print(f'Average length among {len(documents)} documents loaded is {avg_char_count_pre} characters.')
-# print(f'After the split we have {len(docs)} documents more than the original {len(documents)}.')
-# print(f'Average length among {len(docs)} documents (after split) is {avg_char_count_post} characters.')
-
-try:
-    sample_embedding = np.array(bedrock_embeddings.embed_query(docs[0].page_content))
-    # print("Sample embedding of a document chunk: ", sample_embedding)
-    # print("Size of the embedding: ", sample_embedding.shape)
-
-except ValueError as error:
-    if  "AccessDeniedException" in str(error):
-        print(f"\x1b[41m{error}\
-        \nTo troubeshoot this issue please refer to the following resources.\
-         \nhttps://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_access-denied.html\
-         \nhttps://docs.aws.amazon.com/bedrock/latest/userguide/security-iam.html\x1b[0m\n")      
-        class StopExecution(ValueError):
-            def _render_traceback_(self):
-                pass
-        raise StopExecution        
-    else:
-        raise error
     
 vectorstore_faiss = FAISS.from_documents(
     docs,
@@ -105,14 +79,24 @@ qa = RetrievalQA.from_chain_type(
     chain_type_kwargs={"prompt": PROMPT}
 )
 
+
+# Comment out line 84 to 93 and uncomment anything below line 97 if you want to use Streamlit 
+
 #query = "will i go to jail if i file my taxes incorrectly?"
 #query = "apakah user pool region di file CognitoUserToCSV.py itu argumen yang diwajibkan? apakah ada nilai bawaan region untuk user pool? jika iya, apakah nilai bawaan untuk user pool region?"
 #query = "how do i modify bedrock-workshop.py so i can load all files inside subfolders when using DirectoryLoader class? Or do i need to use different class? show me the code snippet"
 #query = "explain to me what does frontend_stack.py code do?"
 #query = "does frontend_stack.py use origin access identity or origin access control? and tell me which variable that uses it?"
-query = "how many s3 buckets in total we create in frontend_stack.py?"
+#query = "how many s3 buckets in total we create in frontend_stack.py?"
 #query = "whos john cena?"
+#query = "tell me what does waf_stack.py do?"
+# result = qa({"query": query})
+# print_ww(result['result'])
 
+st.title('🤠 Hotdawg AI')
+st.write("I can help you answer questions you have based on your own knowledge base.")
+st.subheader('Question:')
+query = st.text_input("Whats on ur mind bruh?")
+st.subheader('Answer: ')
 result = qa({"query": query})
-print_ww(result['result'])
-st.write("whats good")
+st.write(result['result']) 
