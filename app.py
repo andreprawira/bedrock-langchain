@@ -36,11 +36,13 @@ for url in files:
     file_path = os.path.join("data", url.rpartition("/")[2])
     urlretrieve(url, file_path)
 
+# uncomment either line 40 for pdf files or 41 for python files
 # loader = PyPDFDirectoryLoader("./data/")
 loader = DirectoryLoader("./data/", recursive=True, glob="*.py")
-
 documents = loader.load()
-# - in our testing Character split works better with this PDF data set
+
+# seems that if the file you are asking question is lower than 155 lines of characters, 
+#the LLM will be unable to tell the answer concisely
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size = 1000,
     chunk_overlap = 100,
