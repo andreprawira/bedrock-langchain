@@ -80,7 +80,7 @@ qa = RetrievalQA.from_chain_type(
 )
 
 
-# Comment out line 84 to 93 and uncomment anything below line 97 if you want to use Streamlit 
+# Comment out line 85 to 94 and uncomment anything below line 95 if you want to use Streamlit 
 
 #query = "will i go to jail if i file my taxes incorrectly?"
 #query = "apakah user pool region di file CognitoUserToCSV.py itu argumen yang diwajibkan? apakah ada nilai bawaan region untuk user pool? jika iya, apakah nilai bawaan untuk user pool region?"
