@@ -1,5 +1,11 @@
 # Use Langchain Framework with AWS Bedrock to chat your own data
 
+Chat your own data using Claude, AWS Titan, and FAISS vector store
+
+![](https://github.com/langchain-bedrock/Animation.gif)
+
+*.GIF is fast-forwarded
+
 To manually create a virtualenv on Windows:
 
 ```
@@ -29,4 +35,9 @@ Once dependencies are installed and venv is activated then execute the file
 
 ```
 python .\app.py
+```
+
+Use streamlit UI by executing 
+```
+streamlit run .\app.py [ARGUMENTS]
 ```
