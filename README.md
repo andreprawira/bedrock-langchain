@@ -2,7 +2,7 @@
 
 Chat your own data using Claude, AWS Titan, and FAISS vector store
 
-![]([https://github.com/Your_Repository_Name/Your_GIF_Name.gif](https://github.com/andreprawira/langchain-bedrock/blob/master/Animation.gif)
+![](https://github.com/andreprawira/langchain-bedrock/blob/master/Animation.gif)
 
 *.GIF is fast-forwarded
 
