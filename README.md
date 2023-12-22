@@ -1,6 +1,4 @@
-# Use Langchain Framework with AWS Bedrock to chat your own data
-
-Chat your own data using Claude, AWS Titan, and FAISS vector store
+# Chat your own data using Claude, AWS Titan, and FAISS vector store
 
 ![](https://github.com/andreprawira/langchain-bedrock/blob/master/Animation.gif)
 
